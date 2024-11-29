@@ -1,70 +1,147 @@
-# Getting Started with Create React App
+# Frontend for React CRUD Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for a CRUD application with authentication, built using React and Material UI. The application includes user authentication (login and signup), a dashboard for managing tasks, and a navigation header.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- User authentication with JWT
+- Navigation header with a user profile menu and logout functionality
+- Responsive design with Material UI
+- CRUD operations for tasks (Create, Read, Update, Delete)
+- Protected routes for authenticated users
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Requirements
 
-### `npm test`
+Before running this project, ensure you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/your-username/your-frontend-repo.git
+cd your-frontend-repo
+```
 
-### `npm run eject`
+2. Install dependencies:
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Start the development server:
+```
+npm start
+```
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configuration
+Update the backend API base URL in ```src/api.js```:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+```
+---
+## Backend Server
+Following repository contains the backend server for this frontend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+https://github.com/zaheersani/Tasks-CRUD-Backend
+```
 
-## Learn More
+## Project Structure
+```
+frontend/
+├── public/                     # Static assets
+├── src/                        # Source code
+│   ├── components/             # React components
+│   │   ├── Login.js            # Login page
+│   │   ├── Signup.js           # Signup page
+│   │   ├── Dashboard.js        # Dashboard with CRUD operations
+│   │   ├── Navigation.js       # Navigation header
+│   ├── api.js                  # API service for backend requests
+│   ├── App.js                  # Main App component
+│   └── index.js                # Entry point for the React app
+├── .env                        # Environment variables (optional)
+├── package.json                # Project metadata and dependencies
+└── README.md                   # Project documentation
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Pages and Components
 
-### Code Splitting
+#### 1. Login Page (`Login.js`):
+   - Description: Allows users to log in using their email and password.
+   - Features:
+     - Validates credentials with the backend API.
+     - Stores the JWT token in `localStorage` upon successful login.
+   - Location: `src/components/Login.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 2. Signup Page (`Signup.js`):
+   - Description: Allows users to create a new account.
+   - Features:
+     - Sends user details (name, email, password) to the backend API for registration.
+   - Location: `src/components/Signup.js`
 
-### Analyzing the Bundle Size
+#### 3. Dashboard (`Dashboard.js`):
+   - Description: Displays the user's tasks and provides CRUD operations.
+   - Features:
+     - Fetch tasks from the backend for the authenticated user.
+     - Create, edit, and delete tasks.
+   - Location: `src/components/Dashboard.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### 4. Navigation Header (`Navigation.js`):
+   - Description: Provides a navigation bar with the app title, user menu, and logout functionality.
+   - Features:
+     - User icon dropdown for Profile and Logout options.
+     - Logout clears the token and redirects to the login page.
+   - Location: `src/components/Navigation.js`
 
-### Making a Progressive Web App
+#### 5. API Service (`api.js`):
+   - Description: Manages all interactions with the backend API.
+   - Features:
+     - Functions for login, signup, fetching tasks, creating tasks, updating tasks, and deleting tasks.
+   - Location: `src/api.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### 1. Login with an Existing Account:
+   - Navigate to the login page (`/login`).
+   - Enter your email and password to authenticate.
+   - Upon successful login, you will be redirected to the dashboard.
 
-### Deployment
+#### 2. Signup for a New Account:
+   - Navigate to the signup page (`/signup`).
+   - Fill in your name, email, and password to create a new account.
+   - Once registered, log in with your credentials.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### 3. Dashboard Features:
+   - *View Tasks:*
+     - Your tasks are listed on the dashboard.
+     - Each task displays its title and description.
+   - *Create Task:*
+     - Use the form on the dashboard to add a new task.
+     - Provide the title and description and submit the form.
+   - *Edit Task:*
+     - Click the "Edit" button (pencil icon) next to a task.
+     - Modify the title or description and save your changes.
+   - *Delete Task:*
+     - Click the "Delete" button (trash icon) next to a task to remove it.
 
-### `npm run build` fails to minify
+#### 4. Logout:
+   - Click the user icon in the navigation bar.
+   - Select "Logout" from the dropdown menu.
+   - This will clear your session token and redirect you to the login page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
